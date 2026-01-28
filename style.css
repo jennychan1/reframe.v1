@@ -182,3 +182,187 @@ button {
     display: block;
 }
 
+
+/* Check In Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 50%; /* Center properly */
+    transform: translateX(-50%) translateY(100%); /* Start hidden (slide up) + Centered */
+    width: 100%;
+    max-width: 414px; /* Match app container */
+    height: 100%;
+    background-color: white;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Add shadow for desktop view */
+}
+
+.modal.open {
+    transform: translateX(-50%) translateY(0);
+}
+
+.modal-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header .icon-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #263852;
+    cursor: pointer;
+}
+
+.step-indicator {
+    font-size: 18px;
+    font-weight: 700;
+    color: #263852;
+}
+
+.modal-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.modal-content h2 {
+    font-size: 22px;
+    color: #263852;
+    margin-bottom: 60px;
+    max-width: 300px;
+    line-height: 1.4;
+}
+
+/* Dial Component */
+.rating-container {
+    position: relative;
+    width: 100%;
+    height: 300px; /* Increased height for arc */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* The scrollable area */
+.dial-wrapper {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 0 50%; /* Center the first/last items */
+    width: 100%;
+    height: 200px;
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar IE */
+    cursor: grab;
+    
+    /* Magnetic Snap */
+    scroll-snap-type: x mandatory;
+}
+
+.dial-wrapper::-webkit-scrollbar {
+    display: none; /* Hide scrollbar Chrome/Safari */
+}
+
+.dial-number {
+    flex: 0 0 auto;
+    width: 60px;
+    height: 60px;
+    margin: 0 15px; /* Adjust spacing */
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    color: #888;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 700;
+    transition: transform 0.1s ease-out, background-color 0.2s, color 0.2s; /* Faster transform for smooth drag */
+    
+    /* Snap alignment */
+    scroll-snap-align: center;
+}
+
+/* The active center item style (applied by JS) */
+.dial-number.active {
+    background-color: #cfd8dc;
+    color: #263852;
+    /* Transform handled by JS for precise arc */
+    width: 80px; /* Keep size changes if needed, or handle via scale */
+    height: 80px; 
+    font-size: 32px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Visual Arc at bottom */
+.dial-arc {
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    border-top: 4px solid #e0e0e0;
+    border-radius: 50% 50% 0 0;
+    z-index: -1;
+}
+
+.center-dot {
+    position: absolute;
+    bottom: 50px; /* Adjust based on arc position */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: #ccc;
+    border-radius: 50%;
+}
+
+.modal-footer {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.next-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    color: #263852;
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 4px #e0e0e0; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.next-btn:active {
+    transform: scale(0.95);
+}
+
+.finish-btn {
+    width: auto;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    background: #263852;
+    color: white;
+    border: none;
+}
+
