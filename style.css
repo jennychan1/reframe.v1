@@ -1,0 +1,184 @@
+﻿:root {
+    --primary-text: #293241;
+    --card-bg-gray: #eee;
+    --card-bg-light: #fff;
+    --icon-color-light: #fff;
+    --arrow-color: #293241;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: var(--primary-text);
+    display: flex;
+    justify-content: center;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 414px; /* Mobile width */
+    padding: 24px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding-bottom: 100px; /* Space for the bottom nav */
+}
+
+header {
+    margin-bottom: 24px;
+}
+
+header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #293241; /* Brand color */
+    margin: 0;
+    line-height: 1.2;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 16px; 
+}
+
+/* Severity spans full width */
+.severity-card {
+    grid-column: 1 / -1;
+    height: 120px;
+}
+
+/* Avoidance is tall and takes left column */
+.avoidance-card {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    height: 300px; /* Adjust height based on visual */
+}
+
+/* Right column container needs to handle the stacking */
+.right-column {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 300px; /* Match avoidance card height */
+}
+
+.small-card {
+    flex: 1;
+}
+
+/* Card Styling */
+.card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Soft shadow */
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-bg {
+    background-color: #efefef; /* Light gray background area */
+    flex-grow: 1;
+    border-radius: 12px;
+    margin: 6px 6px 0 6px;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.card-footer {
+    padding: 12px 16px;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+    color: #293241;
+}
+
+.card-icon {
+    color: white;
+    font-size: 24px;
+    opacity: 0.8;
+}
+
+/* Daily Check In Button */
+.check-in-btn {
+    grid-column: 1 / -1;
+    background-color: #dcdcdc;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 18px;
+    color: #293241;
+    margin-top: 10px;
+}
+
+.check-in-btn .fa-circle-arrow-right {
+    font-size: 28px;
+    color: #293241;
+}
+
+button {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    padding: 16px 32px;
+    border-radius: 50px; /* Pillow shape */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15); /* Nice floating shadow */
+    width: 280px; 
+    z-index: 1000;
+}
+
+.nav-item {
+    cursor: pointer;
+    color: #a0a0a0; /* Inactive gray */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-item:hover {
+    color: #263852;
+    transform: translateY(-2px);
+}
+
+.nav-item.active {
+    color: #263852; /* Active dark blue */
+}
+
+.nav-item svg {
+    display: block;
+}
+
