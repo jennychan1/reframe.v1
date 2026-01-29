@@ -366,3 +366,402 @@ button {
     border: none;
 }
 
+
+/* View Management */
+.view {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.view.active-view {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Prepare Page Styles */
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #263852;
+    margin: 0 0 24px 0;
+}
+
+.my-files-btn {
+    background-color: #dcdcdc;
+    color: #263852;
+    padding: 10px 24px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    display: inline-block;
+}
+
+.filter-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-placeholder {
+    height: 44px;
+    flex: 1;
+    background-color: #dcdcdc;
+    border-radius: 12px;
+    margin-right: 16px;
+}
+
+.filter-btn {
+    font-size: 24px;
+    color: #263852;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.list-item {
+    background-color: #efefef;
+    height: 70px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.list-item:hover {
+    background-color: #e0e0e0;
+}
+
+.list-item i {
+    color: #263852;
+    font-size: 20px;
+}
+
+.fab {
+    position: fixed;
+    bottom: 120px; /* Above nav bar */
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #dcdcdc;
+    color: #263852;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    font-size: 24px;
+    border: none;
+    z-index: 100;
+}
+
+
+/* Prepare Intro Modal */
+.intro-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4); /* Dimmed background */
+    z-index: 3000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro-modal.show {
+    display: flex;
+}
+
+.intro-card {
+    background-color: #dcdcdc; /* Gray background from screenshot */
+    width: 85%;
+    max-width: 350px;
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.intro-close-btn {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #263852;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.intro-card h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #263852;
+    margin-bottom: 20px;
+}
+
+.intro-card p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #263852;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+.intro-next-icon {
+    align-self: flex-end;
+    font-size: 24px;
+    color: #263852;
+    cursor: pointer;
+}
+
+/* Fix FAB positioning to be relative to app container */
+.app-container {
+    position: relative; /* Ensure absolute children are contained */
+    min-height: 100vh; /* Ensure it takes full height */
+}
+
+.fab {
+    position: absolute; /* Change from fixed to absolute */
+    right: 20px; /* Inside the container */
+    bottom: 120px; 
+}
+
+
+/* Upload Modal */
+.upload-modal-content {
+    background-color: white;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 24px;
+    padding: 24px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload-area {
+    width: 100%;
+    height: 200px;
+    border: 2px dashed #dcdcdc;
+    border-radius: 16px;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fafafa;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.upload-area:hover, .upload-area.dragover {
+    border-color: #263852;
+    background-color: #f0f4f8;
+}
+
+.upload-icon {
+    font-size: 40px;
+    color: #263852;
+    margin-bottom: 16px;
+}
+
+.upload-text {
+    font-size: 14px;
+    color: #666;
+    pointer-events: none; /* Let clicks pass to container */
+}
+.upload-text strong {
+    color: #263852;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.upload-btn-primary {
+    background-color: #263852;
+    color: white;
+    padding: 14px 40px;
+    border-radius: 30px;
+    border: none;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+
+/* Script Practice View */
+.progress-bar-container {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+
+.progress-segment {
+    flex: 1;
+    height: 6px;
+    background-color: #fff;
+    border: 1px solid #263852;
+    border-radius: 4px;
+}
+
+.progress-segment.active {
+    background-color: #263852;
+}
+
+.instruction-box {
+    background-color: #dcdcdc;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #263852;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.script-card {
+    background-color: white;
+    border: 1px solid #263852;
+    border-radius: 12px;
+    padding: 24px;
+    height: 350px; /* Fixed height for scroll */
+    overflow-y: auto;
+    position: relative;
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #000;
+}
+
+.expand-icon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 20px;
+    color: #000;
+    cursor: pointer;
+    background: white;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+/* Recording Interface */
+.recording-area {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 414px;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Create the rounded top shape */
+    background-color: #dcdcdc;
+    border-radius: 50% 50% 0 0 / 40px 40px 0 0; 
+}
+
+/* Override bottom nav visibility in this view */
+#view-script-practice ~ .bottom-nav {
+    display: none; /* Hide main nav in this view */
+}
+
+.record-btn-wrapper {
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.record-btn-wrapper:active {
+    transform: scale(0.95);
+}
+
+.record-icon {
+    font-size: 32px;
+    color: #dcdcdc; /* Disabled/Inactive color usually found in microphones */
+}
+.record-btn-wrapper.active .record-icon {
+    color: #e74c3c; /* Red when recording */
+}
+
+/* Playback Interface (Hidden by default) */
+.playback-controls {
+    display: none; /* Flex when active */
+    align-items: center;
+    gap: 20px;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background-color: #ffcccc;
+    color: #d32f2f;
+}
+
+.play-btn {
+    background-color: #263852;
+    color: white;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+}
+
+.next-step-btn {
+    position: absolute;
+    right: 20px;
+    bottom: 50px; /* Adjust based on layout */
+    background: none;
+    border: none;
+    font-weight: 700;
+    color: #263852;
+    font-size: 16px;
+    cursor: pointer;
+    display: none; /* Show only when done */
+}
+

@@ -10,9 +10,15 @@
     <link rel="stylesheet" href="style.css">
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- PDF.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+    </script>
 </head>
 <body>
     <div class="app-container">
+        <div id="view-home" class="view active-view">
         <header>
             <h1>Good evening,<br><span class="highlight">Kim!</span></h1>
         </header>
@@ -75,6 +81,103 @@
                 <i class="fa-solid fa-circle-arrow-right"></i>
             </div>
         </main>
+        </div>
+
+        <!-- Prepare View -->
+        <div id="view-prepare" class="view">
+            <h1 class="page-title">Prepare</h1>
+            
+            <button class="my-files-btn">My Files</button>
+            
+            <div class="filter-row">
+                <div class="search-placeholder"></div>
+                <button class="filter-btn"><i class="fa-solid fa-sliders"></i></button>
+            </div>
+            
+            <div class="list-container">
+                <div class="list-item">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+                <div class="list-item">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+                <div class="list-item">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+            
+            <button class="fab" onclick="openUploadModal()">
+                <i class="fa-solid fa-arrow-up-from-bracket"></i>
+            </button>
+        </div>
+
+        <!-- Script Practice View -->
+        <div id="view-script-practice" class="view">
+            <div class="modal-header">
+                <button class="icon-btn" onclick="navigateTo('prepare')"><i class="fa-solid fa-chevron-left"></i></button>
+                <h2 style="margin:0; font-size: 20px;">Presentation Script</h2>
+                <div style="width: 24px;"></div> <!-- Spacer -->
+            </div>
+
+            <div class="progress-bar-container">
+                <div class="progress-segment active"></div>
+                <div class="progress-segment"></div>
+                <div class="progress-segment"></div>
+            </div>
+
+            <div class="instruction-box">
+                Please read your whole script once
+            </div>
+
+            <div class="script-card">
+                <i class="fa-solid fa-arrow-up-right-from-square expand-icon"></i>
+                <div id="script-content">
+                    Stuttering is the most common speech disorder...
+                </div>
+            </div>
+
+            <div class="recording-area">
+                <div id="record-btn" class="record-btn-wrapper" onclick="toggleRecording()">
+                    <i class="fa-solid fa-microphone record-icon"></i>
+                </div>
+                
+                <div id="playback-controls" class="playback-controls">
+                    <button class="control-btn delete-btn" onclick="resetRecording()">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                    <button class="control-btn play-btn" onclick="playRecording()">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+
+                <div id="next-step-btn" class="next-step-btn" onclick="alert('Proceeding to next step...')">
+                    Next <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div id="upload-modal" class="intro-modal">
+        <div class="upload-modal-content">
+            <div style="align-self: flex-end;">
+                <button class="intro-close-btn" onclick="closeUploadModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <h2 style="margin: 0 0 10px 0; color:#263852;">Upload File</h2>
+            <p style="margin: 0; color:#666; text-align:center;">Supported: PDF, DOCX, Images</p>
+
+            <div class="upload-area" id="drop-zone" onclick="document.getElementById('file-input').click()">
+                <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                <div class="upload-text" id="upload-text">
+                    <strong>Click to upload</strong>
+                    or drag and drop here
+                </div>
+                <input type="file" id="file-input" hidden accept=".pdf,.doc,.docx,image/*">
+            </div>
+
+            <button class="upload-btn-primary" onclick="closeUploadModal()">Done</button>
+        </div>
     </div>
 
     <!-- Bottom Navigation -->
@@ -93,6 +196,16 @@
         </div>
     </nav>
     
+    <!-- Prepare Intro Modal -->
+    <div id="prepare-intro-modal" class="intro-modal">
+        <div class="intro-card">
+            <button class="intro-close-btn" onclick="closePrepareIntro()"><i class="fa-solid fa-xmark"></i></button>
+            <h2>Prepare</h2>
+            <p>Upload scripts or notes for upcoming events and rehearse them at your own pace. Break speech into manageable parts and strengthen prediction before high-pressure moments.</p>
+            <i class="fa-solid fa-chevron-right intro-next-icon" onclick="closePrepareIntro()"></i>
+        </div>
+    </div>
+
     <!-- Check In Modal -->
     <div id="checkin-modal" class="modal">
         <div class="modal-header">
